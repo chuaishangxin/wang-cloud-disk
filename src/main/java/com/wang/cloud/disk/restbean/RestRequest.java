@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author wangpq
  * @version 1.0
@@ -16,12 +18,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RestRequest {
+public class RestRequest<T> {
 
     @Builder.Default
     private long timeStamp = System.currentTimeMillis();
 
+    @NotBlank(message = "请求来源不能为空！")
     private String source;
 
-    private Object data;
+    private T data;
+
 }
